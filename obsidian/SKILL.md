@@ -3,7 +3,9 @@ name: obsidian
 description: >
   Write, format, and structure notes using Obsidian-flavored Markdown. Use this skill whenever
   the user asks to create, convert, or improve notes for Obsidian Trigger on phrases like
-  "write me an Obsidian note", "format this for Obsidian", or whenever the user mentions Obsidian. Also trigger when the user pastes raw content and asks Claude to structure it as a note.
+  "write me an Obsidian note", "format this for Obsidian", "make a Mermaid diagram", or whenever
+  the user mentions Obsidian. Also trigger when the user pastes raw content and asks Claude to
+  structure it as a note.
 ---
 
 # Obsidian Skill
@@ -102,6 +104,21 @@ Callouts can be collapsed by adding `+` (open) or `-` (closed) after the type:
 
 ---
 
+### Mermaid Diagrams
+
+Obsidian supports Mermaid diagrams in fenced code blocks.
+
+````markdown
+```mermaid
+flowchart TD
+  A[Start] --> B{Decision}
+  B -->|Yes| C[Do task]
+  B -->|No| D[Skip task]
+```
+````
+
+---
+
 ### Block References
 
 Assign a block ID to any paragraph to allow direct linking:
@@ -135,12 +152,3 @@ Block IDs: lowercase, hyphens, no spaces.
 ## Linking Strategy
 
 - Don't link other notes, only use external links or block links.
-
----
-
-## Output Format
-
-When producing a note:
-
-1. Write the body with appropriate headings.
-2. Wrap the whole thing in a Markdown code block labeled `markdown` if delivering inside a chat response, so the user can copy it cleanly. If saving to disk, write it as a raw `.md` file.
